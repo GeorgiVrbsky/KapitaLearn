@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List (REST frontend)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 80%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        #form { margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>User List</h1>
+<button onclick="loadUsers()">Reload Users</button>
+
+<table id="userTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Add User</h2>
+<form id="form">
+    <input type="text" id="firstName" placeholder="First name" required>
+    <input type="text" id="lastName" placeholder="Last name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Add</button>
+</form>
+
+<script>
+    function loadUsers() {
+        fetch("/users/all")
+            .then(res => res.json())
+            .then(users => {
+                const tbody = document.querySelector("#userTable tbody");
+                tbody.innerHTML = "";
+                users.forEach(u => {
+                    tbody.innerHTML += `
+              <tr>
+                <td>${u.id}</td>
+                <td>${u.first_name}</td>
+                <td>${u.last_name}</td>
+                <td>${u.email}</td>
+                <td>${u.role}</td>
+              </tr>`;
+                });
+            });
+    }
+
+    document.querySelector("#form").addEventListener("submit", e => {
+        e.preventDefault();
+        const data = new URLSearchParams();
+        data.append("firstName", document.querySelector("#firstName").value);
+        data.append("lastName", document.querySelector("#lastName").value);
+        data.append("email", document.querySelector("#email").value);
+        data.append("password", document.querySelector("#password").value);
+
+        fetch("/users/add", {
+            method: "POST",
+            body: data
+        })
+            .then(() => {
+                loadUsers();
+                e.target.reset();
+            });
+    });
+
+    // načte uživatele hned po otevření stránky
+    loadUsers();
+</script>
+</body>
+</html>
