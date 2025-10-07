@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users Table</title>
+    <title>Stocks Table</title>
 </head>
 <body>
-<h2>Users</h2>
+<h2>Stocks</h2>
 
-<table id="usersTable" border="1">
+<table id="stocksTable" border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Email</th>
+        <th>name</th>
+        <th>price</th>
+        <th>amount</th>
     </tr>
     </thead>
     <tbody></tbody>
@@ -21,18 +21,18 @@
 
 <script>
     // po načtení stránky stáhni data z API
-    fetch('/users/all')
+    fetch('/stocks/all')
         .then(response => response.json())
-        .then(users => {
-            const tableBody = document.querySelector('#usersTable tbody');
+        .then(stocks => {
+            const tableBody = document.querySelector('#stocksTable tbody');
             tableBody.innerHTML = ''; // vyčisti tabulku
-            users.forEach(user => {
+            stocks.forEach(stock => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${user.id}</td>
-                    <td>${user.first_name}</td>
-                    <td>${user.last_name}</td>
-                    <td>${user.email}</td>
+                    <td>${stock.id}</td>
+                    <td>${stock.name}</td>
+                    <td>${stock.priceOfOne}</td>
+                    <td>${stock.totalAmount}</td>
                 `;
                 tableBody.appendChild(row);
             });
