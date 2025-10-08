@@ -6,13 +6,9 @@
 </head>
 <body>
 
-<form action="@{/login}" method="post">
-    <input type="text" name="username" placeholder="Email" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <label>
-        <input type="checkbox" name="remember-me" /> Remember me
-    </label>
-    <button type="submit">Login</button>
+<form action="api/users/getUser/" method="get">
+
+    <label for="email"></label><input type="text" id="email" name="email">
 </form>
 
 </body>

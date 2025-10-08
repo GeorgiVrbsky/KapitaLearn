@@ -21,7 +21,7 @@
 
 <script>
     // po načtení stránky stáhni data z API
-    fetch('/stocks/all')
+    fetch('/api/stocks/all')
         .then(response => response.json())
         .then(stocks => {
             const tableBody = document.querySelector('#stocksTable tbody');

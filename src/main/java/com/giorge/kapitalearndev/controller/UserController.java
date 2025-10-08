@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -27,8 +27,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/getUser")
-    public User getUser(@RequestParam String email) {
+    @GetMapping("/getUser/{email}")
+    public User getUser(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 
