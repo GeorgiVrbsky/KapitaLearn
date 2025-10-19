@@ -19,13 +19,23 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Stock> getAll() {
         return stockService.getAll();
     }
 
-    @GetMapping("/getStock/{name}")
+    @GetMapping("/{name}")
     public Stock getStock(@PathVariable String name) {
         return stockService.getStockByName(name);
+    }
+
+    @GetMapping("/{name}/quantity")
+    public Double getStockQuantity(@PathVariable String name) {
+        return stockService.getStockQuantityByName(name);
+    }
+
+    @GetMapping("/{name}/price")
+    public Double getStockPrice(@PathVariable String name) {
+        return stockService.getStockPriceByName(name);
     }
 }

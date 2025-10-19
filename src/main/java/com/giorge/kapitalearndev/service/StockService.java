@@ -20,4 +20,14 @@ public class StockService {
     public Stock getStockByName(String name) {
         return stockRepository.findByName(name);
     }
+
+    public Double getStockQuantityByName(String name) {
+        Stock stock = stockRepository.findByName(name);
+        return stock.getTotalAmount();
+    }
+
+    public Double getStockPriceByName(String name) {
+        Stock stock = stockRepository.findByName(name);
+        return stock.getPriceOfOne();
+    }
 }
