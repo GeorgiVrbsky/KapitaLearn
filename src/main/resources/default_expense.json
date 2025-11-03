@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Bydlení",
+    "name": "Nájem",
+    "basePrice": 15000,
+    "variationPercent": 0.0,
+    "isPaidDefault": false,
+    "description": "Měsíční nájemné."
+  },
+  {
+    "category": "Jídlo",
+    "name": "Supermarket",
+    "basePrice": 6000,
+    "variationPercent": 0.15,
+    "isPaidDefault": true,
+    "description": "Průměrné měsíční náklady na jídlo."
+  },
+  {
+    "category": "Doprava",
+    "name": "Veřejná doprava",
+    "basePrice": 1200,
+    "variationPercent": 0.0,
+    "isPaidDefault": true,
+    "description": "Měsíční jízdenka."
+  },
+  {
+    "category": "Volný čas",
+    "name": "Koníčky",
+    "basePrice": 1500,
+    "variationPercent": 0.3,
+    "isPaidDefault": true,
+    "description": "Náhodné útraty za zábavu."
+  }
+]

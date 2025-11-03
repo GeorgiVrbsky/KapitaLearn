@@ -29,6 +29,4 @@ public class UserStocksController {
     public List<UserStocks> getAllUserStocksById(@PathVariable Integer userId) {
         return userStocksService.getAllUserStocksById(userId);
     }
-
-    @PostMapping
 }
